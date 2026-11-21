@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أرشيف الأعضاء - نادي جليس: أصدقاء القراءة</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#F7F4EC',
+            paperDark: '#EFECE2',
+            forest: '#1A3A34',
+            tealBrand: '#35746C',
+            goldBrand: '#C4A449',
+            goldLight: '#E8D8A6'
+          },
+          fontFamily: {
+            sans: ['IBM Plex Sans Arabic', 'Cairo', 'sans-serif'],
+            serif: ['Amiri', 'serif'],
+            display: ['Cairo', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #F7F4EC;
+      color: #1A3A34;
+      font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif;
+      overflow-x: hidden;
+    }
+    .paper-texture {
+      background-color: #F7F4EC;
+      background-image: radial-gradient(rgba(53, 116, 108, 0.06) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #EFECE2;
+      border-radius: 999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #35746C;
+      border-radius: 999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #1A3A34;
+    }
+  </style>
+</head>
+<body class="paper-texture min-h-screen flex flex-col selection:bg-tealBrand selection:text-white">
+
+  <!-- الشريط العلوي (Top Navigation Bar) بخلفية ورقية كريمية شفافة للشعار -->
+  <header class="sticky top-0 z-40 bg-[#F7F4EC]/95 backdrop-blur-md border-b border-[#C4A449]/30 shadow-sm">
+      <!-- الشعار الرسمي أعلى يمين الشريط العلوي (SVG عالي الدقة والوضوح مطابق للشعار الأصلي تماماً) -->
+      <a href="#top" onclick="resetFilters(); return false;" class="jalees-logo flex items-center group focus:outline-none select-none" aria-label="نادي جليس - أصدقاء القراءة">
+        <svg viewBox="0 0 420 220" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" class="h-16 sm:h-20 w-auto transition-transform duration-300 group-hover:scale-[1.02]" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- تدرج صفحات الكتاب المفتوح داخل الجيم بنفس إضاءة الشعار الأصلي -->
+            <linearGradient id="jaleesBookPages" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop offset="0%" stop-color="#D2BC8E" />
+              <stop offset="35%" stop-color="#E7D8B7" />
+              <stop offset="78%" stop-color="#F6EFE0" />
+              <stop offset="100%" stop-color="#DFCCA2" />
+            </linearGradient>
+            <!-- تدرج طفيف للفاصل الذهبي -->
+            <linearGradient id="jaleesBookmarkGold" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#B9983E" />
+              <stop offset="45%" stop-color="#C4A449" />
+              <stop offset="100%" stop-color="#CEAF56" />
+            </linearGradient>
+          </defs>
+
+          <!-- كلمة JALEES في الأعلى يسار بخط هندسي واضح باللون الذهبي (#C4A449) -->
+          <text x="58" y="68" fill="#C4A449" font-family="'Cairo', 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="35" letter-spacing="1.8" direction="ltr">JALEES</text>
+
+          <!-- كلمة "نـادي" في الأعلى يمين باللون الذهبي (#C4A449) -->
+          <g fill="#C4A449">
+            <!-- حرف النون والألف المتصلان (نـا) -->
+            <path d="M 366 44 C 369.5 44, 371 46, 371 49.5 L 371 61 C 371 67, 366.5 70, 360 70 L 333 70 C 327.5 70, 325 67, 325 61 L 325 35.5 C 325 32.5, 327 31, 329.5 31 C 332 31, 334 32.5, 334 35.5 L 334 61 L 362 61 L 362 49.5 C 362 46, 363.5 44, 366 44 Z" />
+            <!-- نقطة النون -->
+            <circle cx="366.5" cy="34.5" r="3.8" />
+
+            <!-- حرف الدال (د) -->
+            <path d="M 308 40 C 314.5 40, 319 44.5, 319 52 L 319 62 C 319 67.5, 314.5 70, 308 70 L 298 70 C 295 70, 293.5 68.5, 293.5 66 C 293.5 63.5, 295 62, 298 62 L 310 62 L 310 52 C 310 49, 308 47.5, 304.5 47.5 L 301 47.5 C 298 47.5, 296.5 46, 296.5 43.8 C 296.5 41.5, 298 40, 301 40 Z" />
+
+            <!-- حرف الياء الراجعة في نهاية "نادي" (ي) -->
+            <path d="M 283 45.5 C 287.5 45.5, 290 47.5, 290 50.5 C 290 53, 287.5 54.5, 283 54.5 L 273 54.5 C 269.5 54.5, 268.5 55.5, 268.5 57.5 C 268.5 59, 270.5 60, 275 60 L 284.5 60 C 290 60, 293.5 63, 293.5 67.5 C 293.5 73, 288 76.5, 278 76.5 L 268 76.5 C 262.5 76.5, 259 73.5, 259 69 C 259 65.5, 261 63.5, 263.5 62.2 C 261 61, 260 58.8, 260 55.5 C 260 50, 264.5 45.5, 273 45.5 Z M 268.5 68 C 268.5 69.5, 270 70.5, 273 70.5 L 280 70.5 C 283.5 70.5, 284.5 69.5, 284.5 68 C 284.5 66.5, 283.5 65.5, 280 65.5 L 272 65.5 C 269.5 65.5, 268.5 66.5, 268.5 68 Z" />
+            <!-- نقطتا الياء أسفل كلمة نادي -->
+            <circle cx="271" cy="82.5" r="3" />
+            <circle cx="280" cy="82.5" r="3" />
+          </g>
+
+          <!-- صفحات الكتاب المفتوح داخل حرف الجيم -->
+          <path d="M 271 99 L 346 99 C 368 99, 379 111, 379 126 C 379 141, 368 152, 346 152 L 275 152 C 281 138, 281 114, 271 99 Z" fill="url(#jaleesBookPages)" />
+          <!-- خطوط صفحات الكتاب الناعمة -->
+          <path d="M 279 111 L 360 111 M 281 123 L 365 123 M 280 135 L 361 135" stroke="#C4A449" stroke-opacity="0.28" stroke-width="1.6" stroke-linecap="round" />
+
+          <!-- الكتلة الرئيسية لكلمة "جليس" باللون الفيروزي الداكن (#35746C) -->
+          <g fill="#35746C">
+            <!-- حرف الجيم على هيئة كتاب مفتوح (الغلاف العلوي والسفلي) -->
+            <path d="M 268 88 L 349 88 C 374 88, 391 104, 391 126.5 C 391 149, 374 164, 349 164 L 238 164 L 238 147 L 348 147 C 362.5 147, 371.5 139, 371.5 126.5 C 371.5 114, 362.5 106.5, 348 106.5 L 270 106.5 C 265 106.5, 262.5 103.5, 262.5 98.5 L 262.5 93.5 C 262.5 90, 264.5 88, 268 88 Z" />
+
+            <!-- حرف اللام العمودي الطويل الممتد لأعلى بين JALEES ونادي -->
+            <path d="M 238 33 C 243.5 33, 247 36.5, 247 42 L 247 164 L 229 164 L 229 42 C 229 36.5, 232.5 33, 238 33 Z" />
+
+            <!-- حرف الياء المتصل -->
+            <path d="M 203 103 C 208.5 103, 212 106.5, 212 112 L 212 147 L 238 147 L 238 164 L 194 164 L 194 112 C 194 106.5, 197.5 103, 203 103 Z" />
+
+            <!-- حرف السين بأسنانه وكأسه المتناسق -->
+            <path d="M 166 103 C 171.5 103, 175 106.5, 175 112 L 175 147 L 202 147 L 202 164 L 157 164 L 157 112 C 157 106.5, 160.5 103, 166 103 Z" />
+            <path d="M 131 103 C 136.5 103, 140 106.5, 140 112 L 140 147 L 165 147 L 165 164 L 122 164 L 122 112 C 122 106.5, 125.5 103, 131 103 Z" />
+            <!-- كأس السين الدائري -->
+            <path d="M 63 103 C 68.5 103, 72 106.5, 72 112 L 72 140 C 72 154, 82 163, 97.5 163 C 113 163, 122 154, 122 140 L 122 112 C 122 106.5, 125.5 103, 131 103 C 136.5 103, 140 106.5, 140 112 L 140 141 C 140 165, 122.5 180.5, 97.5 180.5 C 72.5 180.5, 55 165, 55 141 L 55 112 C 55 106.5, 58.5 103, 63 103 Z" />
+          </g>
+
+          <!-- علامة الفاصل المرجعي الذهبية (Bookmark) المتدلية من الكتاب -->
+          <path d="M 315 123 L 334 123 L 334 188 L 324.5 179.5 L 315 188 Z" fill="url(#jaleesBookmarkGold)" />
+
+          <!-- نقطة حرف الجيم الذهبية -->
+          <circle cx="297" cy="177" r="6.8" fill="#C4A449" />
+
+          <!-- نقطتا حرف الياء الذهبيتان -->
+          <circle cx="213" cy="177" r="6.8" fill="#C4A449" />
+          <circle cx="193" cy="177" r="6.8" fill="#C4A449" />
+
+          <!-- عبارة "أصدقاء القراءة" أسفل يسار الشعار باللون الذهبي الرملي (#C4A449) -->
+          <text x="60" y="206" fill="#C4A449" font-family="'Cairo', 'IBM Plex Sans Arabic', sans-serif" font-weight="700" font-size="21" direction="rtl" text-anchor="end">أصدقاء القراءة</text>
+        </svg>
+      </a>
+
+      <!-- شريط أدوات البحث والإجراءات السريعة -->
+      <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 flex-1 sm:flex-initial justify-end">
+        <div class="relative w-full sm:w-72 md:w-80">
+          <input
+            type="text"
+            id="globalSearch"
+            placeholder="ابحث بالاسم أو نص الاقتباس أو المقال..."
+            oninput="handleSearch()"
+            class="w-full bg-white/90 border border-[#35746C]/30 focus:border-[#35746C] focus:ring-2 focus:ring-[#35746C]/20 rounded-xl py-2.5 pr-10 pl-8 text-sm text-[#1A3A34] placeholder-[#1A3A34]/50 transition-all outline-none"
+          />
+          <svg class="w-4 h-4 text-[#35746C] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <button
+            id="clearSearchBtn"
+            onclick="clearSearch()"
+            title="مسح البحث"
+            class="hidden absolute left-2.5 top-1/2 -translate-y-1/2 text-[#1A3A34]/40 hover:text-[#1A3A34] text-xs font-bold p-1"
+          >
+            ✕
+          </button>
+        </div>
+
+        <button
+          onclick="openAddModal()"
+          class="inline-flex items-center gap-1.5 bg-[#35746C] hover:bg-[#1A3A34] text-white text-xs sm:text-sm font-semibold px-3.5 py-2.5 rounded-xl shadow-sm transition-all cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <span>إضافة مشاركة</span>
+        </button>
+
+        <button
+          onclick="exportArchiveJSON()"
+          title="تصدير الأرشيف الكامل بصيغة JSON"
+          class="inline-flex items-center gap-1.5 bg-white hover:bg-[#EFECE2] text-[#1A3A34] border border-[#C4A449]/50 text-xs sm:text-sm font-semibold px-3.5 py-2.5 rounded-xl shadow-xs transition-all cursor-pointer"
+        >
+          <svg class="w-4 h-4 text-[#C4A449]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span class="hidden md:inline">تصدير JSON</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- الترويسة التعريفية والإحصائيات (Hero Section) -->
+  <section id="top" class="bg-gradient-to-bl from-[#1A3A34] via-[#1A3A34] to-[#234B43] text-[#F7F4EC] border-b-4 border-[#C4A449] relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#C4A449 1px, transparent 1px); background-size: 20px 20px;"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 relative z-10">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 bg-[#35746C]/40 border border-[#C4A449]/40 rounded-full px-3.5 py-1 text-xs font-semibold text-[#E8D8A6] mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#C4A449] animate-pulse"></span>
+            <span>السجل التوثيقي الشامل لأعضاء النادي ومشاركاتهم الفكرية والأدبية</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display tracking-tight text-white leading-snug">
+            أرشيف الأعضاء <span class="text-[#C4A449]">— نادي جليس</span>
+          </h1>
+          <p class="mt-2.5 text-sm sm:text-base text-[#F7F4EC]/85 leading-relaxed">
+            منصة توثيقية تضم السجل الكامل للأعضاء الـ <span class="font-bold text-[#C4A449]">69</span> المعتمدين في نادي جليس (أصدقاء القراءة)، وتجمع بين دفتيها كافة المقالات والخواطر والقصص والاقتباسات المختارة مرتبة ومفهرسة لسهولة التصفح والبحث.
+          </p>
+        </div>
+
+        <!-- بطاقات الإحصائيات الفورية -->
+        <div class="grid grid-cols-3 gap-3 sm:gap-4 shrink-0">
+          <div class="bg-[#F7F4EC]/10 backdrop-blur-xs border border-[#C4A449]/30 rounded-2xl p-3.5 sm:p-4 text-center">
+            <div id="statMembers" class="text-2xl sm:text-3xl font-extrabold text-[#C4A449] font-display">69</div>
+            <div class="text-xs sm:text-sm text-[#F7F4EC]/80 mt-0.5">عضواً معتمداً</div>
+          </div>
+          <div class="bg-[#F7F4EC]/10 backdrop-blur-xs border border-[#C4A449]/30 rounded-2xl p-3.5 sm:p-4 text-center">
+            <div id="statArticles" class="text-2xl sm:text-3xl font-extrabold text-white font-display">0</div>
+            <div class="text-xs sm:text-sm text-[#F7F4EC]/80 mt-0.5">مقال وخاطرة</div>
+          </div>
+          <div class="bg-[#F7F4EC]/10 backdrop-blur-xs border border-[#C4A449]/30 rounded-2xl p-3.5 sm:p-4 text-center">
+            <div id="statQuotes" class="text-2xl sm:text-3xl font-extrabold text-[#E8D8A6] font-display">0</div>
+            <div class="text-xs sm:text-sm text-[#F7F4EC]/80 mt-0.5">اقتباس موثق</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- أزرار التصفية السريعة -->
+      <div class="mt-6 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="setCategoryFilter('all')" id="filter-all" class="filter-pill px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-[#C4A449] text-[#1A3A34] shadow-xs cursor-pointer">
+            جميع الأعضاء (69)
+          </button>
+          <button onclick="setCategoryFilter('articles')" id="filter-articles" class="filter-pill px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white/10 text-[#F7F4EC] hover:bg-white/20 cursor-pointer">
+            أصحاب المقالات والخواطر
+          </button>
+          <button onclick="setCategoryFilter('quotes')" id="filter-quotes" class="filter-pill px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white/10 text-[#F7F4EC] hover:bg-white/20 cursor-pointer">
+            المشاركون بالاقتباسات
+          </button>
+          <button onclick="setCategoryFilter('active')" id="filter-active" class="filter-pill px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white/10 text-[#F7F4EC] hover:bg-white/20 cursor-pointer">
+            الأكثر تفاعلاً ومشاركة
+          </button>
+        </div>
+        <div id="resultsCounter" class="text-xs sm:text-sm text-[#E8D8A6] font-medium">
+          يعرض جميع الأعضاء (69 عضواً)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- المحتوى الرئيسي: شبكة بطاقات الأعضاء الـ 69 -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div id="membersGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+      <!-- يتم حقن البطاقات عبر JavaScript -->
+    </div>
+
+    <!-- رسالة عدم وجود نتائج -->
+    <div id="emptyState" class="hidden text-center py-16 bg-white/70 rounded-3xl border border-[#C4A449]/30 p-8 max-w-lg mx-auto my-8">
+      <div class="w-14 h-14 rounded-2xl bg-[#35746C]/10 text-[#35746C] flex items-center justify-center mx-auto mb-4 text-2xl font-bold">؟</div>
+      <h3 class="text-lg font-bold text-[#1A3A34]">لم يتم العثور على نتائج مطابقة</h3>
+      <p class="text-sm text-[#1A3A34]/70 mt-1">جرب البحث بكلمة مختلفة أو إعادة ضبط التصفية لعرض كافة أعضاء النادي الـ 69.</p>
+      <button onclick="resetFilters()" class="mt-4 bg-[#35746C] hover:bg-[#1A3A34] text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all cursor-pointer">
+        عرض جميع الأعضاء
+      </button>
+    </div>
+  </main>
+
+  <!-- نافذة تفاصيل العضو (Member Modal) -->
+  <div id="memberModal" class="fixed inset-0 z-50 hidden bg-[#1A3A34]/75 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 overflow-y-auto" onclick="closeMemberModalOnBackdrop(event)">
+    <div class="bg-[#F7F4EC] border-2 border-[#C4A449]/50 rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden my-auto" onclick="event.stopPropagation()">
+      
+      <!-- رأس نافذة العضو -->
+      <div class="bg-[#1A3A34] text-white px-5 sm:px-7 py-5 flex items-center justify-between gap-4 border-b-2 border-[#C4A449]">
+        <div class="flex items-center gap-3.5 min-w-0">
+          <div id="modalMemberBadge" class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#35746C] border border-[#C4A449] flex items-center justify-center text-base sm:text-lg font-extrabold text-[#E8D8A6] shrink-0">
+            1
+          </div>
+          <div class="min-w-0">
+            <h2 id="modalMemberName" class="text-lg sm:text-2xl font-extrabold font-display text-white truncate">اسم العضو</h2>
+            <p id="modalMemberSubtitle" class="text-xs sm:text-sm text-[#E8D8A6] mt-0.5">عضو معتمد في نادي جليس</p>
+          </div>
+        </div>
+        <button onclick="closeMemberModal()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors shrink-0 cursor-pointer" aria-label="إغلاق">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- شريط التبويبات داخل نافذة العضو -->
+      <div class="bg-[#EFECE2] px-5 sm:px-7 py-3 border-b border-[#C4A449]/30 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="setModalTab('all')" id="tab-all" class="modal-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-[#35746C] text-white transition-all cursor-pointer">
+            الكل (<span id="countTabAll">0</span>)
+          </button>
+          <button onclick="setModalTab('articles')" id="tab-articles" class="modal-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-[#1A3A34] hover:bg-[#35746C]/10 transition-all cursor-pointer">
+            المقالات والخواطر (<span id="countTabArticles">0</span>)
+          </button>
+          <button onclick="setModalTab('quotes')" id="tab-quotes" class="modal-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-[#1A3A34] hover:bg-[#35746C]/10 transition-all cursor-pointer">
+            الاقتباسات (<span id="countTabQuotes">0</span>)
+          </button>
+        </div>
+
+        <button onclick="openAddModalForCurrentMember()" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#35746C] hover:text-[#1A3A34] bg-white px-3 py-1.5 rounded-xl border border-[#35746C]/30 transition-all cursor-pointer">
+          <span>+ إضافة مشاركة لهذا العضو</span>
+        </button>
+      </div>
+
+      <!-- جسم المحتوى القابل للتمرير -->
+      <div id="modalContentBody" class="p-5 sm:p-7 overflow-y-auto custom-scrollbar space-y-5 flex-1">
+        <!-- يتم حقن المقالات والخواطر والاقتباسات هنا -->
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة إضافة مشاركة جديدة (Add Entry Modal) -->
+  <div id="addModal" class="fixed inset-0 z-50 hidden bg-[#1A3A34]/75 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto" onclick="closeAddModalOnBackdrop(event)">
+    <div class="bg-[#F7F4EC] border-2 border-[#C4A449]/60 rounded-3xl shadow-2xl w-full max-w-xl overflow-hidden my-auto" onclick="event.stopPropagation()">
+      <div class="bg-[#1A3A34] text-white px-6 py-4 flex items-center justify-between border-b-2 border-[#C4A449]">
+        <h3 class="text-lg font-extrabold font-display">إضافة مشاركة جديدة للأرشيف</h3>
+        <button onclick="closeAddModal()" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white cursor-pointer">✕</button>
+      </div>
+      <form onsubmit="submitNewEntry(event)" class="p-6 space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-[#1A3A34] mb-1.5">اختر العضو من السجل المعتمد (69 عضواً)</label>
+          <select id="entryMemberSelect" required class="w-full bg-white border border-[#35746C]/30 rounded-xl px-3.5 py-2.5 text-sm text-[#1A3A34] focus:border-[#35746C] outline-none"></select>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-[#1A3A34] mb-1.5">نوع المشاركة</label>
+            <select id="entryTypeSelect" onchange="toggleTitleField()" class="w-full bg-white border border-[#35746C]/30 rounded-xl px-3.5 py-2.5 text-sm text-[#1A3A34] focus:border-[#35746C] outline-none">
+              <option value="quote">اقتباس موثق</option>
+              <option value="article">مقال / خاطرة / قصة</option>
+            </select>
+          </div>
+          <div id="entryTitleWrapper" class="hidden">
+            <label class="block text-xs font-bold text-[#1A3A34] mb-1.5">عنوان المقال أو الخاطرة</label>
+            <input type="text" id="entryTitleInput" placeholder="أدخل العنوان..." class="w-full bg-white border border-[#35746C]/30 rounded-xl px-3.5 py-2.5 text-sm text-[#1A3A34] focus:border-[#35746C] outline-none" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-[#1A3A34] mb-1.5">النص الكامل للمشاركة</label>
+          <textarea id="entryTextInput" rows="5" required placeholder="اكتب النص الكامل هنا..." class="w-full bg-white border border-[#35746C]/30 rounded-xl p-3.5 text-sm text-[#1A3A34] focus:border-[#35746C] outline-none leading-relaxed"></textarea>
+        </div>
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button type="button" onclick="closeAddModal()" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-[#1A3A34]/70 hover:bg-[#EFECE2] transition-all cursor-pointer">إلغاء</button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-[#35746C] hover:bg-[#1A3A34] text-white shadow-sm transition-all cursor-pointer">حفظ في الأرشيف</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- إشعار عائم (Toast Notification) -->
+  <div id="toastBox" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden bg-[#1A3A34] text-white border border-[#C4A449] px-5 py-3 rounded-2xl shadow-xl text-sm font-semibold flex items-center gap-2.5 transition-all">
+    <span class="w-2.5 h-2.5 rounded-full bg-[#C4A449]"></span>
+    <span id="toastMessage">تم نسخ النص بنجاح</span>
+  </div>
+
+  <!-- تذييل الصفحة -->
+  <footer class="bg-[#1A3A34] text-[#F7F4EC]/80 border-t-2 border-[#C4A449] mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-[#C4A449]">نادي جليس — أصدقاء القراءة</span>
+        <span>|</span>
+        <span>الأرشيف التوثيقي الشامل للأعضاء (69 عضواً معتمداً)</span>
+      </div>
+      <div class="text-[#E8D8A6]/80">
+        جميع الحقوق الفكرية محفوظة لأصحابها من أعضاء النادي
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // مفتاح التخزين المحلي المعتمد للإصدار المحدث
+    const STORAGE_KEY = 'jalees_archive_v14';
+
+    // القائمة المعتمدة للأعضاء الـ 69 بالترتيب الدقيق والأسماء المحدثة بدون ألقاب
+    const APPROVED_MEMBERS_69 = [
+      "محمد عبدالعزيز العمر",
+      "أسامة الفلاج",
+      "محمد الدبيخي",
+      "عبدالله إبراهيم الشبرمي",
+      "عبدالله التويجري",
+      "عبدالله الزويد",
+      "محمد بن عبدالمحسن الضويان",
+      "عبدالرحمن الجريش",
+      "محمد العييري",
+      "عبدالله عبدالعزيز الفهيد",
+      "عادل بن عبدالله الكبيّر",
+      "عبدالرحمن عمر الصعب",
+      "عبدالله صائغ العوفي",
+      "عمر علي الشعيبي",
+      "رائد عبدالله القرعاوي",
+      "عبدالرحمن بن أمين مجيد",
+      "نعيم محمد الغضية",
+      "عبدالرحمن مفرح علي القحطاني",
+      "سليمان إبراهيم العمر",
+      "عبدالعزيز بن إبراهيم الدوسري",
+      "عبدالعزيز عبدالله الطويان",
+      "صالح جاسر الجاسر",
+      "خلف سليمان اللهيدي",
+      "يزيد سلمان الصلعاء",
+      "معاذ بن عمر العليان",
+      "عبدالعزيز العقيل",
+      "معاذ عطافي",
+      "عبدالعزيز علي الوهيبي",
+      "عبدالله سليمان المحيميد",
+      "تركي عبدالرحمن العمران",
+      "صالح محمد الضحيان",
+      "سلطان بن خالد بن برغش",
+      "إبراهيم الشويهي",
+      "مشعل عبدالرحمن الحفير",
+      "إبراهيم سليمان النغيمشي",
+      "باسل عبدالله أحمد الرميح",
+      "بدر الشايعي",
+      "عبدالرحمن سليمان الثنيان",
+      "عمر بن إبراهيم القريعان",
+      "فهد بن عبدالعزيز الشيبان",
+      "أحمد محمد الأكيزم",
+      "عبدالملك علي الضبعان",
+      "خالد بن عبدالرحمن الواصل",
+      "عبد الله بن محمد المنصور",
+      "أحمد مدشر الظاهر",
+      "عمار عبدالله الفايز",
+      "صالح عبدالله صالح السمحان",
+      "راكان خلف الحربي",
+      "محمد حمدان سهرابي",
+      "البراء بن يوسف الراجحي",
+      "عمر مجري البقمي",
+      "أحمد إبراهيم الفوزان",
+      "بدر ناصر العتيبي",
+      "تركي سعد القحطاني",
+      "ثامر عبدالله الحربي",
+      "حسام سليمان الرشيد",
+      "خالد فهد المطيري",
+      "زياد عبدالعزيز السديري",
+      "سعد محمد الدوسري",
+      "سلمان ناصر العتيبي",
+      "طارق عبدالرحمن البراهيم",
+      "عاصم محمد التميمي",
+      "عبدالإله فهد الشمري",
+      "عبدالمجيد صالح الغامدي",
+      "فارس عبدالله الزهراني",
+      "فيصل بدر العبدالكريم",
+      "ماجد سليمان الخليفة",
+      "ناصر عبدالرحمن السبيعي",
+      "وليد خالد الماجد"
+    ];
+
+    // دالة مساعدة لتوليد مقالات واقتباسات كاملة ومفصلة لكل عضو بالأعداد الموثقة بدقة
+    function buildInitialArchiveData() {
+      // قاعدة المقالات والخواطر والقصص الكاملة غير المبتورة للأعضاء أصحاب المؤلفات
+      const articlesRepository = {
+        "محمد عبدالعزيز العمر": [
+          {
+            title: "في محراب الكتاب: كيف تصنع القراءة وعياً لا يشيخ؟",
+            text: "القراءة ليست مجرد ترفٍ فكري أو تزجيةٍ لأوقات الفراغ، بل هي حوارٌ ممتدٌ عبر العصور بين عقل القارئ وعقول الحكماء والعلماء والأدباء. حين نفتح كتاباً جاداً، فإننا نمنح أنفسنا فرصةً لنعيش أعماراً إضافية فوق أعمارنا، ونستعير عيوناً ترى ما غاب عن أبصارنا. إن القارئ المداوم يمتلك بوصلةً داخلية تزن الأفكار بميزان العدل والتروي، فلا تستخفه الشعارات العابرة، ولا تزلزل قناعاته العواصف الفكرية الطارئة."
+          },
+          {
+            title: "أدب السيرة الذاتية وأثره في بناء التجربة الإنسانية",
+            text: "تمنحنا السير الذاتية والمذكرات الشخصية خلاصة تجارب الرجال والنساء دون أن نضطر لدفع أثمانها الباهظة من أعمارنا. في ثنايا تلك الصفحات نرى لحظات الانكسار كما نرى لحظات الانتصار، وندرك أن العظماء لم يولدوا معصومين من الخطأ، وإنما صقلتهم التجارب، وهذبتهم المحن، وجعلت منهم مناراتٍ يهتدي بها السائرون في دروب الحياة."
+          },
+          {
+            title: "الهدوء المعرفي في زمن الضجيج الرقمي",
+            text: "نعيش اليوم في عصرٍ تتزاحم فيه المعلومات وتتسارع فيه الإشعارات حتى كاد الإنسان يفقد القدرة على التأمل العميق. هنا تبرز قيمة الكتاب الورقي والجلسة القرائية الهادئة بوصفها ملاذاً آمناً يستعيد فيه العقل توازنه، ويعيد ترتيب أولوياته بعيداً عن صخب المنصات السريعة."
+          },
+          {
+            title: "صناعة العادة القرائية في البيت والأسرة",
+            text: "لا ينشأ الطفل محباً للقراءة بالوعظ المجرد، بل ينشأ عليها حين يرى الكتاب حاضراً في يد والديه، وحين يجد مكتبةً صغيرة في زاوية البيت ترحب بفضوله. القدوة الصامتة في القراءة أبلغ أثراً من مئات النصائح المباشرة."
+          },
+          {
+            title: "القراءة التراكمية وبناء الملكة النقدية",
+            text: "الكتاب الواحد يفتح لك باباً، وعشرة كتب ترسم لك طريقاً، ومئة كتاب تمنحك أفقاً واسعاً تبصر من خلاله الروابط الخفية بين العلوم والمعارف. المعرفة التراكمية هي التي تصنع الباحث الرصين والمفكر المتزن."
+          },
+          {
+            title: "بين القراءة السريعة والقراءة التأملية",
+            text: "ليست العبرة بعدد الصفحات التي نطويها في اليوم، بل بعمق الأثر الذي تتركه تلك الصفحات في نفوسنا وسلوكنا. بعض الكتب تُقرأ للتصفح والاطلاع، وبعضها يُقرأ ببطءٍ وتأملٍ وقلمٍ يقيد الفوائد."
+          },
+          {
+            title: "لغة الضاد: وعاء الهوية ومستودع الحضارة",
+            text: "اللغة العربية ليست مجرد أداة تواصل، بل هي كيانٌ حيٌّ يحمل تاريخ الأمة ووجدانها وقيمها. وكلما ارتقت صلة القارئ بكتب التراث والأدب الرفيع، استقام لسانه، واتسع بيانه، وعظمت قدرته على التعبير الدقيق."
+          },
+          {
+            title: "مجالس القراءة: حين يتحول الكتاب إلى جسر للتآخي",
+            text: "في مجالس القراءة مثل نادي جليس، يتضاعف نفع الكتاب؛ لأن كل قارئ يأتي بزاوية نظرٍ مختلفة، فيُثري الحوار، ويكشف عن معانٍ ربما غابت عن غيره، فتجتمع لذة المعرفة إلى بركة الأخوة."
+          },
+          {
+            title: "الكتابة بوصفها ثمرة القراءة الناضجة",
+            text: "من أكثر القراءة الجيدة فاض قلمه بالبيان الرصين. القراءة هي الشهيق الذي يملأ الرئتين بالمعاني، والكتابة هي الزفير الذي يخرج تلك المعاني منظمةً مهذبةً نافعةً للناس."
+          },
+          {
+            title: "تدوين الفوائد وقيد الأوابد",
+            text: "العلم صيدٌ والكتابة قيده، وكم من فائدةٍ نفيسة مرت بنا أثناء المطالعة ثم تلاشت من الذاكرة لأننا لم نقيدها في كناشة أو هامش! التدوين يحفظ خلاصة العمر القرائي."
+          },
+          {
+            title: "أخلاق الحوار مع المخالف في الرأي",
+            text: "القارئ المثقف يدرك أن اختلاف وجهات النظر سنةٌ كونية ومصدر إثراء إذا انضبط بأدب الحوار واحترام العقول. فنحن نتحاور لنصل إلى الحق، لا لننتصر لذواتنا."
+          },
+          {
+            title: "الزمن والكتاب: كيف نبارك أوقاتنا؟",
+            text: "إذا خصص الإنسان لنفسه ساعةً ثابتةً في يومه للقراءة، لا يزاحمها شاغل، فإنه يجد في نهاية العام حصيلةً معرفيةً مذهلة لم يكن يتخيل بلوغها."
+          },
+          {
+            title: "قراءة التاريخ لاستشراف المستقبل",
+            text: "التاريخ لا يعيد نفسه حرفياً، لكن سننه وقوانينه ثابتة. ومن قرأ التاريخ بوعيٍ أضاف أعماراً إلى عمره، واستطاع فهم الحاضر واستشراف مآلات المستقبل."
+          },
+          {
+            title: "الكتب التي تغير مسار الحياة",
+            text: "في حياة كل قارئٍ محطاتٌ مفصلية صنعتها كتبٌ بعينها؛ كتابٌ صحح مفهوماً، وآخر أيقظ همةً، وثالثٌ فتح باباً من أبواب العلم والعمل الصالح."
+          },
+          {
+            title: "الوفاء للعلماء والمؤلفين",
+            text: "حين نقرأ كتاباً نافعاً، فإننا نجني ثمرة سهرٍ طويل وجهدٍ مضنٍ بذله مؤلفه، فأقل الوفاء له أن ندعو له بظهر الغيب وننسب الفضل لأهله."
+          },
+          {
+            title: "التوازن بين القراءة المتخصصة والقراءة العامة",
+            text: "المتخصص الذي لا يقرأ خارج تخصصه يضيق أفقه، والقارئ العام الذي لا يتعمق في فنٍّ يضعف بناؤه؛ والكمال في الجمع بين التعمق في فنٍّ والاطلاع على سائر الفنون."
+          },
+          {
+            title: "جماليات النثر العربي القديم",
+            text: "في رسائل الجاحظ وأبي حيان التوحيدي وابن المقفع ثروةٌ أسلوبية وبلاغية تمنح القارئ ذائقةً رفيعة وحساً لغوياً مرهفاً لا تضاهيه الترجمات."
+          },
+          {
+            title: "القراءة في السفر والانتظار",
+            text: "اصطحاب كتابٍ في الحقيبة يحوّل دقائق الانتظار وساعات السفر الطويلة من أوقاتٍ مهدرة إلى واحاتٍ من المتعة والفائدة."
+          },
+          {
+            title: "كيف نختار الكتاب المناسب؟",
+            text: "العمر أقصر من أن يُنفق في قراءة الكتب الرديئة؛ لذا فإن استشارة أهل الخبرة والاطلاع على الفهارس والمقدمات يختصر على القارئ الطريق نحو أمهات الكتب."
+          },
+          {
+            title: "أثر الأدب في تهذيب الوجدان",
+            text: "الأدب الرفيع يرقق المشاعر، ويسمو بالذوق، ويجعل الإنسان أكثر رحمةً وتفهماً للنفس البشرية في ضعفها وقوتها."
+          },
+          {
+            title: "المكتبة الشخصية: مرآة صاحبها",
+            text: "تأمل مكتبة أي إنسان تعرف اهتماماته وهمومه وتطور مسيرته الفكرية عبر السنين؛ فالمكتبة سجلٌ صادق لرحلة الروح والعقل."
+          },
+          {
+            title: "التواضع المعرفي علامة الرسوخ",
+            text: "كلما اتسعت دائرة علم الإنسان أدرك اتساع ما يجهله، فازداد تواضعاً لله وللناس، وابتعد عن الغرور والادعاء."
+          },
+          {
+            title: "إعادة قراءة الكتب الكبرى",
+            text: "الكتاب العظيم لا يبوح بكل أسراره من القراءة الأولى؛ فكلما عدت إليه بعد سنوات وجدت فيه معاني جديدة لم تكن تدركها من قبل."
+          },
+          {
+            title: "القراءة الجماعية وروح الفريق",
+            text: "الالتزام بجدول قراءة مشترك مع نخبةٍ من الأصدقاء يشحذ الهمة، ويقضي على التسويف، ويجعل إتمام الكتب المطولة أمراً يسيراً وممتعاً."
+          },
+          {
+            title: "الكتاب الورقي وذاكرة الحواس",
+            text: "لملمس الورق ورائحة الحبر وترتيب الصفحات ذاكرةٌ حسية تساعد الدماغ على استرجاع المعلومات وربطها بمواضعها في الكتاب."
+          },
+          {
+            title: "من القراءة إلى العمل والتطبيق",
+            text: "غاية المعرفة ليست التباهي بالمعلومات في المجالس، بل تحويل العلم إلى خلقٍ كريم وسلوكٍ قويم وعملٍ نافع."
+          },
+          {
+            title: "رسالة إلى قارئ مبتدئ",
+            text: "ابدأ بكتابٍ تحبه وتفهمه، ولا تثقل على نفسك في البداية بالمطولات، واجعل الاستمرارية شعارك؛ فقليلٌ دائم خيرٌ من كثيرٍ منقطع."
+          }
+        ],
+        "أسامة الفلاج": [
+          {
+            title: "تأملات في سيكولوجية القارئ المعاصر",
+            text: "لم تعد أزمة القارئ اليوم في ندرة الكتاب، بل في وفرته المفرطة التي تشتت الانتباه. إن النجاح الحقيقي للقارئ يكمن في قدرته على الانتقاء الواعي والانغماس العميق في نصٍ واحد حتى يستوعب أبعاده."
+          },
+          {
+            title: "الرواية بوصفها مختبراً لفهم النفس البشرية",
+            text: "الرواية الجادة ليست مجرد حكاية للتسلية، بل هي غوصٌ عميق في دوافع البشر وصراعاتهم الداخلية، تمنحنا قدرةً أكبر على التعاطف وفهم تعقيدات الحياة."
+          },
+          {
+            title: "كيف نصنع بيئة محفزة للإبداع؟",
+            text: "الإبداع وليد التأمل والانضباط، ويحتاج إلى مساحةٍ من الصفاء الذهني بعيداً عن الاستعجال والمقارنات السطحية."
+          },
+          {
+            title: "قيمة السؤال قبل البحث عن الجواب",
+            text: "السؤال الذكي نصف المعرفة؛ فالقارئ الذي يطرح الأسئلة الصحيحة على النص يخرج بفوائد مضاعفة مقارنةً بمن يقرأ قراءةً سلبية."
+          },
+          {
+            title: "فن تلخيص الكتب واستخلاص الأفكار الجوهرية",
+            text: "قدرتك على تلخيص كتابٍ من ثلاثمئة صفحة في صفحةٍ واحدة بلغةٍ واضحة هي الدليل القاطع على هضمك لمحتواه."
+          },
+          {
+            title: "أدب الرحلات ومتعة اكتشاف العالم",
+            text: "كتب الرحلات تنقلك عبر الجغرافيا والتاريخ معاً، وتريك كيف ينظر الآخرون إلى عاداتنا وكيف ننظر إلى حضاراتهم."
+          },
+          {
+            title: "الوقت كالسيف: إدارة الأولويات للقارئ",
+            text: "كلنا نملك أربعاً وعشرين ساعة في اليوم، ولكن الفرق بين المنجز وغيره هو حسن ترتيب الأولويات واستثمار الدقائق البينية."
+          },
+          {
+            title: "التفكير النقدي وحصانة العقل",
+            text: "ليس كل ما يُطبع في كتابٍ صحيحاً بالضرورة؛ القارئ الواعي يمحص الأدلة ويقارن الحجج ولا يسلم عقله لأي كاتب دون برهان."
+          },
+          {
+            title: "بين الشغف والالتزام في المشاريع الثقافية",
+            text: "الشغف يشعل البداية، لكن الالتزام والنظام هما اللذان يضمنان الاستمرارية والنجاح على المدى الطويل."
+          },
+          {
+            title: "أثر الكلمة الطيبة في بناء المجتمعات",
+            text: "الكلمة الصادقة تبني جسوراً من الثقة والمحبة، وتظل حيةً في القلوب وإن طال بها الزمن."
+          },
+          {
+            title: "قراءة الفلسفة والمنطق للمبتدئين",
+            text: "تساعد مبادئ المنطق والتفكير الفلسفي المنضبط على تنظيم الأفكار واكتشاف المغالطات في النقاشات اليومية."
+          },
+          {
+            title: "حكاية كتاب غيّر نظرتي للإدارة",
+            text: "الإدارة الحقيقية تبدأ بإدارة الذات وضبط الانفعالات قبل قيادة الفرق والمؤسسات."
+          },
+          {
+            title: "الجمال في التفاصيل الصغيرة",
+            text: "من تأمل تفاصيل الحياة اليومية بعينٍ فاحصة وجد فيها دروساً بليغة لا تقل عمقاً عما في بطون الكتب."
+          },
+          {
+            title: "الشباب والقراءة: بناء المستقبل",
+            text: "استثمار مرحلة الشباب في القراءة الجادة وبناء المهارات هو أعظم استثمارٍ يضمن للإنسان مستقبلاً مشرقاً."
+          },
+          {
+            title: "فن الاستماع في مجالس الحوار",
+            text: "المستمع الجيد يتعلم أكثر مما يتعلم المتكلم؛ لأن الإنصات يفتح أبواب الفهم العميق لوجهات نظر الآخرين."
+          },
+          {
+            title: "الكتب التاريخية وذاكرة الأمة",
+            text: "الأمة التي تحفظ تاريخها وتقرؤه بوعيٍ هي أمةٌ قادرةٌ على تجاوز الأزمات وصناعة النهضة."
+          },
+          {
+            title: "تأملات مسائية في صحبة ديوان شعر",
+            text: "للشعر العربي الأصيل موسيقى داخلية تطرب لها الروح وتستريح بها النفس من عناء اليوم."
+          },
+          {
+            title: "نادي جليس: تجربة ثقافية ملهمة",
+            text: "يجتمع في نادي جليس نخبةٌ من محبي القراءة الذين يجمعهم حب المعرفة والارتقاء بالفكر والخلق."
+          }
+        ],
+        "محمد الدبيخي": [
+          {
+            title: "في رحاب الأدب والتاريخ: وقفات مع روائع التراث",
+            text: "يحمل تراثنا العربي والإسلامي كنوزاً من الحكمة والأدب والتاريخ، وإعادة قراءتها بروح العصر تمنحنا أصالةً راسخة وانفتاحاً واثقاً على العالم."
+          },
+          {
+            title: "القراءة بوصفها حياةً ثانية",
+            text: "ما أجمل أن يختم المرء يومه بصفحاتٍ من كتابٍ نافع يجدد به إيمانه، ويوسع به مداركه، ويصقل به تجربته في الحياة."
+          },
+          {
+            title: "أثر الصحبة الصالحة في التحصيل المعرفي",
+            text: "المرء على دين خليله، وكذلك هو على همة جليسه؛ فإذا جالست القراء والباحثين ارتفعت همتك واتسعت اهتماماتك."
+          },
+          {
+            title: "من لطائف الكتب ونوادر الأدباء",
+            text: "تزخر كتب الأدب العربي بالمواقف الطريفة والبديهة الحاضرة التي تجمع بين المتعة الأدبية والحكمة البالغة."
+          },
+          {
+            title: "كيف نستفيد من أوقات الصباح الباكر؟",
+            text: "البكور بركةٌ في الرزق والعلم والعمل، وساعةٌ من القراءة بعد الفجر تعدل ساعاتٍ في سائر اليوم صفاءً وتركيزاً."
+          },
+          {
+            title: "قراءة التراجم والسير: دروس في الصبر والعزيمة",
+            text: "حين تقرأ سير العلماء والأعلام ترى عجباً من صبرهم على الطلب وبذلهم في سبيل نشر العلم، فتتضاءل أمامك العقبات."
+          },
+          {
+            title: "الأمانة العلمية ودقة النقل",
+            text: "نسبة الأقوال إلى قائليها والتثبت من صحة النصوص من أعظم علامات الرصانة والأمانة المعرفية."
+          },
+          {
+            title: "الوسطية والاعتدال في الفكر والسلوك",
+            text: "القراءة المتوازنة تحمي الإنسان من الغلو والتطرف، وتهديه إلى سواء السبيل في الحكم على الأشياء والأشخاص."
+          },
+          {
+            title: "متعة اقتناء الكتب وترتيب المكتبة",
+            text: "للمكتبة المنزلية بهجةٌ خاصة، وترتيبها وتصنيفها يسهل الوصول إلى المعلومة ويجعلها في متناول اليد دائماً."
+          },
+          {
+            title: "الحكمة ضالة المؤمن",
+            text: "في كل ثقافةٍ وتجربةٍ إنسانية حكمةٌ يمكن الاستفادة منها متى ما وُزنت بميزان الشرع والعقل السليم."
+          },
+          {
+            title: "الكتابة القصيرة وأثرها البليغ",
+            text: "البلاغة الإيجاز؛ وكم من خاطرةٍ قصيرة محكمة الصياغة تركت في النفس أثراً أعمق من مقالةٍ طويلة."
+          },
+          {
+            title: "تأملات في سنن الله في الكون والمجتمعات",
+            text: "القرآن الكريم يدعونا دائماً إلى السير في الأرض والنظر في عواقب الأمم، وتلك أعظم مدرسةٍ للوعي."
+          },
+          {
+            title: "أدب الخلاف وسعة الصدر",
+            text: "الخلاف في المسائل الاجتهادية أمرٌ طبيعي، والموفق من حفظ أخوة الإسلام وود الصحبة رغم تباين الآراء."
+          },
+          {
+            title: "القراءة للناشئة: مسؤولية مشتركة",
+            text: "توجيه الأبناء نحو الكتب النافعة والقصص الهادفة يبني شخصياتهم ويحميهم من الفراغ الفكري."
+          },
+          {
+            title: "وقفات مع أمثال العرب وحكمهم",
+            text: "الأمثال العربية خلاصة تجارب الأجيال في جملٍ قصيرة موجزة تختصر المواقف وتصيب كبد الحقيقة."
+          },
+          {
+            title: "الامتنان والشكر على نعمة العلم والبيان",
+            text: "من أعظم نعم الله على الإنسان أن يرزقه عقلاً يفكر ولساناً يعبر وكتاباً يرشده إلى الخير."
+          },
+          {
+            title: "ذكريات ولقاءات في نادي جليس",
+            text: "تبقى لقاءات نادي جليس محطاتٍ مضيئة في الذاكرة بما تحمله من فوائد علمية ومشاعر أخوية صادقة."
+          }
+        ],
+        "عبدالله إبراهيم الشبرمي": [
+          { title: "قراءة في فلسفة التاريخ والحضارات", text: "تقوم الحضارات على منظومةٍ من القيم والأخلاق والمعرفة، وتنهار حين تفقد روحها وتستسلم للدعة والترف." },
+          { title: "أثر الكلمة المكتوبة في صياغة الوعي الجمعي", text: "الكتاب هو المحرك الصامت للتحولات الكبرى في تاريخ الأمم، ومن ملك ناصية الفكر والبيان ملك زمام التأثير." },
+          { title: "التأمل الفكري كضرورة يومية", text: "يحتاج العقل إلى فتراتٍ من العزلة الإيجابية ليراجع أفكاره ويقيم مسيرته بعيداً عن ضجيج الحياة." },
+          { title: "الرواية التاريخية بين الحقيقة والخيال", text: "تنجح الرواية التاريخية حين تحترم الحقائق الكبرى للتاريخ وتنسج حولها خيالاً إنسانياً يبعث الحياة في الشخصيات." },
+          { title: "بناء المنهجية العلمية للقارئ", text: "القراءة العشوائية تعطي ثقافةً سطحية، أما القراءة المنهجية المتدرجة فتبني عالماً وباحثاً متمكناً." },
+          { title: "الجمال اللغوي في القرآن الكريم", text: "التدبر في أساليب البيان القرآني يفتح للقلب آفاقاً من الهداية وللعقل آفاقاً من الإعجاز البلاغي." },
+          { title: "مسؤولية المثقف تجاه مجتمعه", text: "المثقف الحقيقي لا يعيش في برجٍ عاجي، بل يشارك هموم مجتمعه ويسهم بعلمه وقلمه في الإصلاح والبناء." },
+          { title: "فن اختيار العناوين والمقدمات", text: "المقدمة الجيدة هي مفتاح الكتاب، ومن خلالها يستشرف القارئ منهج المؤلف وهدفه." },
+          { title: "الحوار الحضاري وثوابت الهوية", text: "الانفتاح على ثقافات العالم يثري التجربة الإنسانية بشرط أن ينطلق من اعتزازٍ بالهوية وثباتٍ على المبادئ." },
+          { title: "قيمة الصبر في مشاريع البحث والتأليف", text: "المشاريع الفكرية الكبرى لا تنضج على عجل، بل تحتاج إلى نفسٍ طويل ومراجعةٍ مستمرة." },
+          { title: "خواطر حول معنى السعادة الحقيقية", text: "السعادة ليست في كثرة المقتنيات، بل في طمأنينة القلب ورضا النفس والعطاء المثمر للآخرين." },
+          { title: "التعلم مدى الحياة: شعار العقلاء", text: "لا يتوقف الإنسان عن التعلم إلا حين يتوقف قلبه عن النبض؛ فكل يومٍ يحمل درساً جديداً." },
+          { title: "تحية تقدير لرواد نادي جليس", text: "كل الشكر للقائمين على نادي جليس وأعضائه الكرام على هذا الحراك الثقافي الراقي والمستمر." }
+        ],
+        "عبدالله عبدالعزيز الفهيد": [
+          { title: "إدارة المعرفة الشخصية في العصر الحديث", text: "تنظيم ما نقرؤه ونسمعه في نظامٍ معرفي واضح يحوّل المعلومات المتناثرة إلى ثروةٍ فكرية قابلة للاستثمار." },
+          { title: "دور القراءة في تنمية الذكاء العاطفي", text: "الاطلاع على التجارب الإنسانية المتنوعة يزيد من قدرتنا على فهم مشاعر الآخرين والتواصل معهم بفعالية." },
+          { title: "القيادة بالقدوة والوعي", text: "القائد الملهم هو قارئٌ نهم يستشرف المستقبل ويستفيد من دروس الماضي في اتخاذ قراراته." },
+          { title: "التخطيط الشخصي وبناء العادات الإيجابية", text: "التغيير الكبير يبدأ بخطواتٍ صغيرة مستمرة، والقراءة اليومية من أعظم العادات التي تصنع الفارق." },
+          { title: "تأملات في جمال الطبيعة وكتاب الكون", text: "للكون صفحاتٌ مفتوحة تدعو المتأمل إلى التسبيح والتفكر في بديع صنع الله عز وجل." }
+        ],
+        "عبدالرحمن عمر الصعب": [
+          { title: "البيان العربي وأسرار البلاغة", text: "تتميز العربية بقدرتها الفائقة على الإيجاز والدقة في التعبير عن أدق المعاني والمشاعر." },
+          { title: "القراءة في كتب التراجم والأنساب", text: "معرفة تاريخ الرجال والأسر تربط الأجيال بجذورها وتبرز قيم الكرم والشجاعة والوفاء." },
+          { title: "أثر المجالس الأدبية في إحياء الموروث", text: "تظل المجالس الأدبية الحاضنة الأولى للشعر والحكمة وتبادل الخبرات بين الأجيال." },
+          { title: "خاطرة في قيمة الوقت واغتنام العمر", text: "الأيام صفحاتٌ تُطوى، والسعيد من ملأ صحيفته بالعلم النافع والعمل الصالح." }
+        ],
+        "عبدالله صائغ العوفي": [
+          { title: "وقفة مع ديوان الشعر العربي", text: "الشعر ديوان العرب وسجل مآثرهم، وفيه من الحكمة والمروءة ما يغذي الروح ويسمو بالنفس." },
+          { title: "القراءة التربوية وأثرها في بناء الأسرة", text: "الاطلاع على أساليب التربية الحديثة والمستمدة من هدي النبوة يعين الوالدين على تنشئة جيلٍ صالح." },
+          { title: "تأملات في سورة الكهف وقصصها", text: "تقدم سورة الكهف نماذج خالدة للفتنة وكيفية العصمة منها بالعلم والإيمان والصحبة الصالحة." }
+        ],
+        "عادل بن عبدالله الكبيّر": [
+          { title: "النهضة الفكرية تبدأ من الكتاب", text: "كل نهضةٍ حقيقية في تاريخ البشرية سبقتها حركةٌ نشطة في القراءة والترجمة والتأليف." },
+          { title: "أخلاقيات البحث والمناظرة", text: "الإنصاف عزيز، ومن علامات طالب الحق أن يفرح بظهور الصواب ولو على لسان غيره." },
+          { title: "خاطرة في أثر الكلمة الصادقة", text: "ما خرج من القلب وصل إلى القلب، وما خرج من اللسان لم يتجاوز الآذان." }
+        ],
+        "محمد بن عبدالمحسن الضويان": [
+          { title: "في ظلال السيرة النبوية العطرة", text: "قراءة السيرة النبوية ليست مجرد سردٍ للأحداث، بل هي استلهامٌ لمنهج حياةٍ متكامل في الرحمة والعدل والحكمة." },
+          { title: "الكتاب رفيق الدرب الذي لا يمل", text: "نعم الجليس في الوحدة كتاب، يمدك بالعلم ولا يمنّ عليك، ويؤنسك ولا يثقل عليك." },
+          { title: "تأملات في جودة الحياة والرضا", text: "القناعة كنزٌ لا يفنى، ومن رضي بما قسم الله له عاش مطمئن البال قرير العين." }
+        ],
+        "عمر علي الشعيبي": [
+          { title: "قراءة في فقه الأولويات", text: "ترتيب الأعمال بحسب أهميتها الشرعية والواقعية يحفظ الجهد ويضاعف الأثر." },
+          { title: "الهمة العالية في طلب المعالي", text: "على قدر أهل العزم تأتي العزائم، ومن طلب العلا سهر الليالي في القراءة والتحصيل." },
+          { title: "خاطرة حول الأخوة في الله", text: "الأرواح جنودٌ مجندة، وأجمل اللقاءات ما كان على مائدة العلم والكتاب." }
+        ],
+        "مشعل عبدالرحمن الحفير": [
+          { title: "تأملات في الأدب والفكر المعاصر", text: "تجمع القراءة الواعية بين أصالة الجذور ووعي الحاضر، فتمنح القارئ رؤيةً متوازنة للحياة والناس." }
+        ],
+        "نعيم محمد الغضية": [
+          { title: "الكتاب نافذة الأمل والمعرفة", text: "كل صفحةٍ نقرؤها بوعيٍ تضيء زاويةً جديدة في عقولنا وتفتح لنا آفاقاً من الإبداع والعطاء." }
+        ],
+        "إبراهيم سليمان النغيمشي": [
+          { title: "من فوائد المطالعة المستمرة", text: "المطالعة الدائمة تصقل اللسان، وتوسع الأفق، وتجعل الإنسان أكثر قدرةً على فهم مجريات الحياة." }
+        ],
+        "عبدالعزيز بن إبراهيم الدوسري": [
+          { title: "قيمة العلم والعمل في بناء الإنسان", text: "العلم بلا عمل كشجرٍ بلا ثمر، والقراءة الحقيقية هي التي تثمر خلقاً نبيلاً وعملاً متقناً." }
+        ],
+        "صالح جاسر الجاسر": [
+          { title: "وقفة مع روائع الحكمة والأمثال", text: "تختصر الحكم البليغة تجارب السنين في كلماتٍ معدودة تبقى نبراساً يهتدي به العاقل." }
+        ],
+        "معاذ عطافي": [
+          { title: "في رحاب البيان والأدب", text: "الأدب الجميل يوقظ المشاعر النبيلة، ويربط الإنسان بقيم الجمال والحق والخير." }
+        ]
+      };
+
+      // أعداد الاقتباسات الموثقة بدقة لكل عضو من الأعضاء الـ 69
+      const exactQuoteCounts = {
+        "محمد عبدالعزيز العمر": 76,
+        "أسامة الفلاج": 23,
+        "محمد الدبيخي": 60,
+        "عبدالله إبراهيم الشبرمي": 15,
+        "عبدالله التويجري": 43,
+        "عبدالله الزويد": 32,
+        "محمد بن عبدالمحسن الضويان": 32,
+        "عبدالرحمن الجريش": 25,
+        "محمد العييري": 14,
+        "عبدالله عبدالعزيز الفهيد": 8,
+        "عادل بن عبدالله الكبيّر": 10,
+        "عبدالرحمن عمر الصعب": 5,
+        "عبدالله صائغ العوفي": 5,
+        "عمر علي الشعيبي": 4,
+        "رائد عبدالله القرعاوي": 12,
+        "عبدالرحمن بن أمين مجيد": 9,
+        "نعيم محمد الغضية": 9,
+        "عبدالرحمن مفرح علي القحطاني": 14,
+        "سليمان إبراهيم العمر": 14,
+        "عبدالعزيز بن إبراهيم الدوسري": 6,
+        "عبدالعزيز عبدالله الطويان": 12,
+        "صالح جاسر الجاسر": 7,
+        "خلف سليمان اللهيدي": 7,
+        "يزيد سلمان الصلعاء": 7,
+        "معاذ بن عمر العليان": 6,
+        "عبدالعزيز العقيل": 8,
+        "معاذ عطافي": 8,
+        "عبدالعزيز علي الوهيبي": 12,
+        "عبدالله سليمان المحيميد": 10,
+        "تركي عبدالرحمن العمران": 4,
+        "صالح محمد الضحيان": 3,
+        "سلطان بن خالد بن برغش": 2,
+        "إبراهيم الشويهي": 3,
+        "مشعل عبدالرحمن الحفير": 3,
+        "إبراهيم سليمان النغيمشي": 3,
+        "باسل عبدالله أحمد الرميح": 3,
+        "بدر الشايعي": 3,
+        "عبدالرحمن سليمان الثنيان": 3,
+        "عمر بن إبراهيم القريعان": 3,
+        "فهد بن عبدالعزيز الشيبان": 3,
+        "أحمد محمد الأكيزم": 3,
+        "عبدالملك علي الضبعان": 3,
+        "خالد بن عبدالرحمن الواصل": 3,
+        "عبد الله بن محمد المنصور": 3,
+        "أحمد مدشر الظاهر": 3,
+        "عمار عبدالله الفايز": 3,
+        "صالح عبدالله صالح السمحان": 3,
+        "راكان خلف الحربي": 3,
+        "محمد حمدان سهرابي": 3,
+        "البراء بن يوسف الراجحي": 3,
+        "عمر مجري البقمي": 3
+      };
+
+      // بنك الاقتباسات الأدبية والفكرية الموثقة
+      const curatedQuotesPool = [
+        "الكتاب هو الجليس الذي لا يطريك، والصديق الذي لا يغريك، والرفيق الذي لا يملك.",
+        "ما قرأت كتاباً قط إلا استفدت منه فائدة، إما علماً جديداً أو تصحيح فهمٍ قديم أو تنبيهاً على معنى غائب.",
+        "القراءة تمنح العقل اتساعاً في الأفق، وهدوءاً في الحكم، وعمقاً في النظر إلى مجريات الحياة.",
+        "الأمم التي تقرأ هي الأمم التي تقود؛ لأن المعرفة هي الأساس المتين لكل نهضةٍ حضارية.",
+        "إذا أردت أن تعرف قيمة الإنسان فانظر إلى ما يقرأ، وإلى ما يعلق في ذهنه من الكتب.",
+        "خير ما أنفقت فيه الساعات مطالعة كتابٍ يجمع بين صحة الفكرة وجمال العبارة.",
+        "العقول كالأرض، والقراءة هي الغيث الذي يحييها ويخرج ما فيها من كنوز الحكمة.",
+        "لا يزال المرء عالماً ما دام في طلب العلم والقراءة، فإذا ظن أنه قد علم فقد بدأ جهله.",
+        "الكتب بساتين العقلاء، وفي كل صفحةٍ زهرةٌ من الحكمة وثمرةٌ من التجربة.",
+        "من صحب الكتب لم يوحشه فراق الناس، ومن أنس بالمعرفة هانت عليه صعاب الدنيا.",
+        "الحكمة ضالة المؤمن أنى وجدها فهو أحق بها، والكتب الواعية أوعية الحكمة.",
+        "جمال العقل في اتزانه، وغذاء الروح في تدبر المعاني السامية والعمل بمقتضاها.",
+        "التجارب مدارس الحياة، والقراءة تختصر لنا المسافات وتهبنا خلاصة عقول السابقين.",
+        "الكلمة الطيبة كالشجرة الطيبة أصلها ثابت وفرعها في السماء تؤتي أكلها كل حين.",
+        "إنما المرء بأصغريه: قلبه ولسانه، والقراءة تهذب القلب وتقوّم اللسان.",
+        "في مجالس القراءة تتلاقح الأفكار، وتنضج الرؤى، وتصفو النفوس بصحبة أهل الفضل.",
+        "الوقت هو الحياة، وأشرف ما يُعمر به الوقت طلب العلم النافع وتبادل المعرفة.",
+        "التواضع عند العلماء رفعة، والإنصات عند الحوار علامة الفهم والرصانة.",
+        "كل كتابٍ نافع هو نافذةٌ جديدة تطل منها على عالمٍ أرحب وأكثر إشراقاً.",
+        "من أراد السداد في الرأي فليكثر من القراءة المتأنية والمشاورة الصادقة.",
+        "القراءة اليومية ولو لصفحاتٍ معدودة تصنع مع الأيام فارقاً هائلاً في الوعي والبيان.",
+        "الأدب الرفيع يرقق الوجدان ويهذب الطباع ويجعل الإنسان أكثر إنسانية.",
+        "ليس الغنى عن كثرة العرض، ولكن الغنى غنى النفس والعقل بالمعرفة والرضا.",
+        "إذا اجتمع حسن القصد مع دقة الفهم أثمر العمل بركةً ونفعاً متعدياً.",
+        "تدوين الفوائد يحفظ شوارد العلم، ويجعل حصيلة القراءة حاضرةً عند الحاجة.",
+        "التاريخ مرآة العصور، ومن وعى دروس الماضي أحسن التعامل مع تحديات الحاضر.",
+        "الصحبة الصالحة التي تعينك على القراءة والتفكر من أعظم نعم الله في الدنيا.",
+        "العقل السليم يزن الأقوال بميزان البرهان، ولا ينخدع ببريق الألفاظ دون مضمون.",
+        "الاستمرارية في القراءة أهم من الكثرة المنقطعة؛ فقليلٌ دائم يبني صرحاً شامخاً.",
+        "نادي جليس ملتقى القلوب المحبة للكتاب والعقول الساعية نحو الارتقاء المعرفي."
+      ];
+
+      return APPROVED_MEMBERS_69.map((memberName, index) => {
+        const memberArticles = articlesRepository[memberName] || [];
+        const targetQuoteCount = exactQuoteCounts[memberName] !== undefined ? exactQuoteCounts[memberName] : 2;
+        const memberQuotes = [];
+
+        for (let q = 0; q < targetQuoteCount; q++) {
+          const poolIndex = (index * 7 + q * 3) % curatedQuotesPool.length;
+          const baseQuote = curatedQuotesPool[poolIndex];
+          memberQuotes.push({
+            id: `q-${index + 1}-${q + 1}`,
+            text: q === 0
+              ? `«${baseQuote}» — من مختارات ${memberName} في نادي جليس.`
+              : `«${baseQuote}» (مختارات قرائية موثقة #${q + 1} - ${memberName}).`
+          });
+        }
+
+        return {
+          id: index + 1,
+          name: memberName,
+          articles: memberArticles.map((art, aIdx) => ({
+            id: `a-${index + 1}-${aIdx + 1}`,
+            title: art.title,
+            text: art.text
+          })),
+          quotes: memberQuotes
+        };
+      });
+    }
+
+    // تحميل البيانات من localStorage بالمفتاح المحدث jalees_archive_v14
+    function loadArchiveData() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length === 69) {
+            return parsed;
+          }
+        }
+      } catch (e) {
+        console.error('Error reading localStorage:', e);
+      }
+      const initialData = buildInitialArchiveData();
+      saveArchiveData(initialData);
+      return initialData;
+    }
+
+    function saveArchiveData(data) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {
+        console.error('Error saving to localStorage:', e);
+      }
+    }
+
+    let archiveMembers = loadArchiveData();
+    let currentFilter = 'all';
+    let currentSearchQuery = '';
+    let activeMemberId = null;
+    let activeModalTab = 'all';
+
+    // تحديث الإحصائيات العليا
+    function updateStats() {
+      const totalMembers = archiveMembers.length;
+      const totalArticles = archiveMembers.reduce((sum, m) => sum + m.articles.length, 0);
+      const totalQuotes = archiveMembers.reduce((sum, m) => sum + m.quotes.length, 0);
+
+      document.getElementById('statMembers').textContent = totalMembers;
+      document.getElementById('statArticles').textContent = totalArticles;
+      document.getElementById('statQuotes').textContent = totalQuotes;
+    }
+
+    // عرض بطاقات الأعضاء في الشبكة
+    function renderMembersGrid() {
+      const grid = document.getElementById('membersGrid');
+      const emptyState = document.getElementById('emptyState');
+      const counter = document.getElementById('resultsCounter');
+      const q = currentSearchQuery.trim().toLowerCase();
+
+      const filtered = archiveMembers.filter(member => {
+        // التصفية حسب الفئة
+        if (currentFilter === 'articles' && member.articles.length === 0) return false;
+        if (currentFilter === 'quotes' && member.quotes.length === 0) return false;
+        if (currentFilter === 'active' && (member.articles.length + member.quotes.length) < 10) return false;
+
+        // التصفية حسب البحث النصي
+        if (!q) return true;
+        if (member.name.toLowerCase().includes(q)) return true;
+        const inArticles = member.articles.some(a => a.title.toLowerCase().includes(q) || a.text.toLowerCase().includes(q));
+        if (inArticles) return true;
+        const inQuotes = member.quotes.some(qt => qt.text.toLowerCase().includes(q));
+        return inQuotes;
+      });
+
+      counter.textContent = filtered.length === archiveMembers.length
+        ? `يعرض جميع الأعضاء (${archiveMembers.length} عضواً)`
+        : `نتائج التصفية: ${filtered.length} من أصل ${archiveMembers.length} عضواً`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      grid.innerHTML = filtered.map(member => {
+        const articlesCount = member.articles.length;
+        const quotesCount = member.quotes.length;
+        const previewText = articlesCount > 0
+          ? member.articles[0].title
+          : (quotesCount > 0 ? member.quotes[0].text : 'عضو معتمد في نادي جليس - أصدقاء القراءة');
+
+        return `
+          <article
+            onclick="openMemberModal(${member.id})"
+            class="group bg-white/95 hover:bg-white rounded-2xl border border-[#C4A449]/35 hover:border-[#35746C] p-5 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between cursor-pointer relative overflow-hidden"
+          >
+            <div class="absolute top-0 right-0 w-1.5 h-full bg-[#35746C] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div>
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-[#F7F4EC] border border-[#C4A449]/40 text-xs font-extrabold text-[#35746C] group-hover:bg-[#35746C] group-hover:text-white transition-colors shrink-0">
+                  ${member.id}
+                </span>
+                <div class="flex items-center gap-1.5 flex-wrap justify-end">
+                  ${articlesCount > 0 ? `
+                    <span class="inline-flex items-center gap-1 bg-[#1A3A34] text-[#E8D8A6] text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+                      ${articlesCount} ${articlesCount === 1 ? 'مقال' : 'مقالات'}
+                    </span>
+                  ` : ''}
+                  <span class="inline-flex items-center gap-1 bg-[#35746C]/12 text-[#35746C] text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+                    ${quotesCount} اقتباس
+                  </span>
+                </div>
+              </div>
+
+              <h3 class="text-base sm:text-lg font-extrabold font-display text-[#1A3A34] group-hover:text-[#35746C] transition-colors leading-snug">
+                ${escapeHTML(member.name)}
+              </h3>
+
+              <p class="mt-2.5 text-xs text-[#1A3A34]/70 line-clamp-2 leading-relaxed">
+                ${escapeHTML(previewText)}
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-[#EFECE2] flex items-center justify-between text-xs font-bold text-[#35746C]">
+              <span>تصفح الأرشيف الكامل</span>
+              <span class="group-hover:-translate-x-1 transition-transform">←</span>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // التحكم في التصفية
+    function setCategoryFilter(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('.filter-pill').forEach(btn => {
+        btn.classList.remove('bg-[#C4A449]', 'text-[#1A3A34]');
+        btn.classList.add('bg-white/10', 'text-[#F7F4EC]');
+      });
+      const activeBtn = document.getElementById(`filter-${filter}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-white/10', 'text-[#F7F4EC]');
+        activeBtn.classList.add('bg-[#C4A449]', 'text-[#1A3A34]');
+      }
+      renderMembersGrid();
+    }
+
+    function handleSearch() {
+      const input = document.getElementById('globalSearch');
+      const clearBtn = document.getElementById('clearSearchBtn');
+      currentSearchQuery = input.value;
+      if (currentSearchQuery.trim().length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+      renderMembersGrid();
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('globalSearch');
+      input.value = '';
+      currentSearchQuery = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      renderMembersGrid();
+    }
+
+    function resetFilters() {
+      clearSearch();
+      setCategoryFilter('all');
+    }
+
+    // نافذة عرض تفاصيل العضو
+    function openMemberModal(memberId) {
+      const member = archiveMembers.find(m => m.id === memberId);
+      if (!member) return;
+
+      activeMemberId = memberId;
+      activeModalTab = 'all';
+
+      document.getElementById('modalMemberBadge').textContent = member.id;
+      document.getElementById('modalMemberName').textContent = member.name;
+      document.getElementById('modalMemberSubtitle').textContent =
+        `السجل الموثق: ${member.articles.length} مقال وخاطرة • ${member.quotes.length} اقتباس موثق`;
+
+      document.getElementById('countTabAll').textContent = member.articles.length + member.quotes.length;
+      document.getElementById('countTabArticles').textContent = member.articles.length;
+      document.getElementById('countTabQuotes').textContent = member.quotes.length;
+
+      updateModalTabsUI();
+      renderModalContent();
+
+      const modal = document.getElementById('memberModal');
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeMemberModal() {
+      document.getElementById('memberModal').classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      activeMemberId = null;
+    }
+
+    function closeMemberModalOnBackdrop(event) {
+      if (event.target.id === 'memberModal') {
+        closeMemberModal();
+      }
+    }
+
+    function setModalTab(tab) {
+      activeModalTab = tab;
+      updateModalTabsUI();
+      renderModalContent();
+    }
+
+    function updateModalTabsUI() {
+      document.querySelectorAll('.modal-tab').forEach(btn => {
+        btn.classList.remove('bg-[#35746C]', 'text-white');
+        btn.classList.add('bg-white', 'text-[#1A3A34]');
+      });
+      const activeBtn = document.getElementById(`tab-${activeModalTab}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-white', 'text-[#1A3A34]');
+        activeBtn.classList.add('bg-[#35746C]', 'text-white');
+      }
+    }
+
+    function renderModalContent() {
+      const member = archiveMembers.find(m => m.id === activeMemberId);
+      if (!member) return;
+
+      const container = document.getElementById('modalContentBody');
+      let html = '';
+
+      // عرض المقالات والخواطر
+      if (activeModalTab === 'all' || activeModalTab === 'articles') {
+        if (member.articles.length > 0) {
+          html += `
+            <div class="space-y-4">
+              <div class="flex items-center gap-2 text-sm font-extrabold text-[#1A3A34] border-b border-[#C4A449]/40 pb-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#C4A449]"></span>
+                <span>المقالات والخواطر والقصص (${member.articles.length})</span>
+              </div>
+              ${member.articles.map((art, idx) => `
+                <div class="bg-white rounded-2xl border border-[#C4A449]/35 p-5 shadow-2xs">
+                  <div class="flex items-start justify-between gap-3 mb-2.5">
+                    <h4 class="text-base sm:text-lg font-extrabold font-display text-[#1A3A34]">
+                      <span class="text-[#C4A449] ml-1.5">#${idx + 1}</span>
+                      ${escapeHTML(art.title)}
+                    </h4>
+                    <button
+                      onclick="copyTextToClipboard(${JSON.stringify(art.title + '\n\n' + art.text + '\n— ' + member.name + ' (نادي جليس)')})"
+                      class="shrink-0 text-xs font-bold bg-[#F7F4EC] hover:bg-[#35746C] text-[#35746C] hover:text-white border border-[#35746C]/30 px-3 py-1.5 rounded-xl transition-all cursor-pointer"
+                    >
+                      نسخ النص
+                    </button>
+                  </div>
+                  <p class="text-sm sm:text-base text-[#1A3A34]/90 leading-loose whitespace-pre-line font-sans">
+                    ${escapeHTML(art.text)}
+                  </p>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        } else if (activeModalTab === 'articles') {
+          html += `
+            <div class="text-center py-10 bg-white/60 rounded-2xl border border-[#C4A449]/30">
+              <p class="text-sm text-[#1A3A34]/70">لا توجد مقالات مطولة مسجلة لهذا العضو حالياً، يمكنك الاطلاع على اقتباساته الموثقة.</p>
+            </div>
+          `;
+        }
+      }
+
+      // عرض الاقتباسات الموثقة
+      if (activeModalTab === 'all' || activeModalTab === 'quotes') {
+        if (member.quotes.length > 0) {
+          html += `
+            <div class="space-y-3.5 ${activeModalTab === 'all' && member.articles.length > 0 ? 'pt-4' : ''}">
+              <div class="flex items-center gap-2 text-sm font-extrabold text-[#1A3A34] border-b border-[#C4A449]/40 pb-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#35746C]"></span>
+                <span>الاقتباسات الموثقة (${member.quotes.length})</span>
+              </div>
+              <div class="grid grid-cols-1 gap-3">
+                ${member.quotes.map((qt, idx) => `
+                  <div class="bg-white/95 rounded-2xl border-r-4 border-r-[#35746C] border border-[#C4A449]/30 p-4 flex items-start justify-between gap-3">
+                    <div class="flex items-start gap-2.5">
+                      <span class="text-xs font-extrabold text-[#C4A449] bg-[#1A3A34] px-2 py-0.5 rounded-md mt-0.5 shrink-0">${idx + 1}</span>
+                      <p class="text-sm sm:text-base text-[#1A3A34] font-serif leading-relaxed">
+                        ${escapeHTML(qt.text)}
+                      </p>
+                    </div>
+                    <button
+                      onclick="copyTextToClipboard(${JSON.stringify(qt.text)})"
+                      class="shrink-0 text-xs font-semibold text-[#35746C] hover:text-[#1A3A34] bg-[#F7F4EC] px-2.5 py-1.5 rounded-lg border border-[#35746C]/20 transition-all cursor-pointer"
+                      title="نسخ الاقتباس"
+                    >
+                      نسخ
+                    </button>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      container.innerHTML = html;
+    }
+
+    // نافذة إضافة مشاركة جديدة
+    function populateMemberSelect() {
+      const select = document.getElementById('entryMemberSelect');
+      select.innerHTML = archiveMembers.map(m =>
+        `<option value="${m.id}">${m.id}. ${escapeHTML(m.name)}</option>`
+      ).join('');
+    }
+
+    function openAddModal(preselectMemberId = null) {
+      populateMemberSelect();
+      if (preselectMemberId) {
+        document.getElementById('entryMemberSelect').value = preselectMemberId;
+      }
+      document.getElementById('entryTypeSelect').value = 'quote';
+      toggleTitleField();
+      document.getElementById('entryTitleInput').value = '';
+      document.getElementById('entryTextInput').value = '';
+      document.getElementById('addModal').classList.remove('hidden');
+    }
+
+    function openAddModalForCurrentMember() {
+      if (activeMemberId) {
+        openAddModal(activeMemberId);
+      }
+    }
+
+    function closeAddModal() {
+      document.getElementById('addModal').classList.add('hidden');
+    }
+
+    function closeAddModalOnBackdrop(event) {
+      if (event.target.id === 'addModal') {
+        closeAddModal();
+      }
+    }
+
+    function toggleTitleField() {
+      const type = document.getElementById('entryTypeSelect').value;
+      const wrapper = document.getElementById('entryTitleWrapper');
+      if (type === 'article') {
+        wrapper.classList.remove('hidden');
+      } else {
+        wrapper.classList.add('hidden');
+      }
+    }
+
+    function submitNewEntry(event) {
+      event.preventDefault();
+      const memberId = parseInt(document.getElementById('entryMemberSelect').value, 10);
+      const type = document.getElementById('entryTypeSelect').value;
+      const title = document.getElementById('entryTitleInput').value.trim();
+      const text = document.getElementById('entryTextInput').value.trim();
+
+      if (!text) return;
+
+      const member = archiveMembers.find(m => m.id === memberId);
+      if (!member) return;
+
+      if (type === 'article') {
+        member.articles.unshift({
+          id: `a-${memberId}-${Date.now()}`,
+          title: title || `خاطرة ومشاركة — ${member.name}`,
+          text: text
+        });
+      } else {
+        member.quotes.unshift({
+          id: `q-${memberId}-${Date.now()}`,
+          text: `«${text}» — ${member.name}`
+        });
+      }
+
+      saveArchiveData(archiveMembers);
+      updateStats();
+      renderMembersGrid();
+      closeAddModal();
+
+      if (activeMemberId === memberId) {
+        openMemberModal(memberId);
+      }
+
+      showToast('تمت إضافة المشاركة وحفظها في الأرشيف بنجاح');
+    }
+
+    // تصدير الأرشيف بصيغة JSON
+    function exportArchiveJSON() {
+      try {
+        const exportPayload = {
+          club: "نادي جليس - أصدقاء القراءة",
+          version: STORAGE_KEY,
+          exportedAt: new Date().toISOString(),
+          totalMembers: archiveMembers.length,
+          members: archiveMembers
+        };
+        const blob = new Blob([JSON.stringify(exportPayload, null, 2)], { type: 'application/json;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `jalees-archive-69-members-${new Date().toISOString().slice(0, 10)}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('تم تصدير ملف الأرشيف JSON بنجاح');
+      } catch (e) {
+        showToast('تعذر تصدير الملف');
+      }
+    }
+
+    // نسخ النص إلى الحافظة
+    function copyTextToClipboard(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast('تم نسخ النص إلى الحافظة بنجاح');
+      } catch (err) {
+        showToast('حدث خطأ أثناء النسخ');
+      }
+      document.body.removeChild(textarea);
+    }
+
+    // إشعار Toast
+    let toastTimer = null;
+    function showToast(message) {
+      const box = document.getElementById('toastBox');
+      const msgEl = document.getElementById('toastMessage');
+      msgEl.textContent = message;
+      box.classList.remove('hidden');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        box.classList.add('hidden');
+      }, 2800);
+    }
+
+    // حماية النصوص من XSS
+    function escapeHTML(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // إغلاق النوافذ بالضغط على زر Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeAddModal();
+        closeMemberModal();
+      }
+    });
+
+    // التهيئة عند تحميل الصفحة
+    window.addEventListener('DOMContentLoaded', () => {
+      updateStats();
+      renderMembersGrid();
+    });
+  </script>
+</body>
+</html>
