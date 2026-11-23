@@ -57,7 +57,9 @@
       z-index: 100;
       padding: 0.75rem 1.5rem;
       box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease;
     }
+    .top-bar.hidden { transform: translateY(-100%); }
     .top-bar-inner {
       max-width: 1320px;
       margin: 0 auto;
@@ -620,10 +622,7 @@
         <span class="site-badge">أرشيف الأعضاء</span>
       </div>
 
-      <div class="top-actions">
-        <button class="btn btn-outline" onclick="exportArchiveJSON()">📥 تصدير الأرشيف (JSON)</button>
-        <button class="btn btn-gold" onclick="resetToDefault()">🔄 استعادة النسخة المعتمدة</button>
-      </div>
+      <!-- أزرار التصدير/الاستعادة أُزيلت per user request -->
     </div>
   </header>
 
@@ -3793,7 +3792,7 @@
               <div>
                 <div class="member-name">${member.name}</div>
               </div>
-              <span class="member-rank">#${member.id}</span>
+              <!-- rank number removed per user request -->
             </div>
           </div>
           <div class="card-badges">${badgesHTML}</div>
@@ -3806,7 +3805,7 @@
       currentMemberName = member.name;
       currentModalTab = 'all';
       document.getElementById('modalMemberName').textContent = member.name;
-      document.getElementById('modalMemberSubtitle').textContent = `الترتيب في النادي: #${member.id} — ${member.role}`;
+      document.getElementById('modalMemberSubtitle').textContent = `${member.role}`;
       document.getElementById('addEntryForm').classList.remove('open');
       updateModalTabsUI();
       renderModalEntries();
@@ -3939,4 +3938,21 @@
   </script>
 
 
+<script>
+    (function() {
+      function initTopBarHide() {
+        const bar = document.querySelector('.top-bar');
+        if (!bar) return;
+        let lastY = window.scrollY;
+        window.addEventListener('scroll', () => {
+          const y = window.scrollY;
+          if (y > lastY && y > 60) bar.classList.add('hidden');
+          else bar.classList.remove('hidden');
+          lastY = y;
+        }, { passive: true });
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTopBarHide);
+      else initTopBarHide();
+    })();
+  </script>
 </body></html>
